@@ -13,22 +13,49 @@
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-  IP Address Tracker
+  <section class="header-container">
+    IP Address Tracker
 
-  Search for any IP address or domain
+    <form action="">
+      <input type="text" placeholder="Search for any IP address or domain">
+      <button>
+        >
+      </button>
+    </form>    
+  </section>
 
-  IP Address
-  Location
-  Timezone
-    UTC <!-- add offset value dynamically using the API -->
-  ISP
+
+  <section class="user-info-container">
+    <div>
+      <p> IP Address</p>
+      <p> 192.212.174.101 </p>
+    </div>
+    <div>
+      <p> Location </p>
+      <p> Brooklyn, NY 10001 </p>
+    </div>
+    <div>
+      <p> Timezone </p>
+      <p> UTC -0:50 </p>
+    </div>
+    <div>
+      <p> ISP </p>
+      <p> SpaceX Starlink </p>
+    </div>
+  </section>
+
+  <section class="map-container">
+
+  </section>
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Tom Trung Zacchia</a>.
   </div>
 </body>
 </html>

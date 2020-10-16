@@ -1,0 +1,32 @@
+
+// mixins
+@mixin screen-md-min {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+body {
+    margin: 0;
+}
+
+.header-container {
+    height: 40vh;
+    background: url("./images/pattern-bg.png") no-repeat;
+    background-size: cover;
+}
+
+.user-info-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin-left: 10vw;
+    top: 20vh;
+    border: solid thin red
+}
+
+.map-container {
+    background-color: blue;
+    height: 60vh;
+}

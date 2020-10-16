@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+}
+
+.header-container {
+  height: 40vh;
+  background: url("./images/pattern-bg.png") no-repeat;
+  background-size: cover;
+}
+
+.user-info-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80vw;
+  margin-left: 10vw;
+  top: 20vh;
+  border: solid thin red;
+}
+
+.map-container {
+  background-color: blue;
+  height: 60vh;
+}
+/*# sourceMappingURL=style.css.map */

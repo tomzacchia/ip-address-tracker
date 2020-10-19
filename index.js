@@ -2,6 +2,8 @@ const mapBoxToken =
   "pk.eyJ1IjoidG9tdG9tYXRvIiwiYSI6ImNrZ2U4MHBqMTA4emoycXBpbnRkbjQ2cTQifQ.2_ccRECbLRUhha7njCoHsA";
 const IPifyToken = "at_e91MN1DFZkTfwQ2wPJv8EggmtHNYQ";
 
+let globalMap;
+
 const getUserIPAddress = function () {
   return fetch("https://api.ipify.org?format=json")
     .then((response) => {
@@ -37,12 +39,13 @@ const getIPifyData = function (queryParams) {
     });
 };
 
-const repositionMap = function (IPAddressData) {
+const intializeMap = function (IPAddressData) {
   const latitude = IPAddressData.location.lat;
   const longitude = IPAddressData.location.lng;
+  const locationArr = [latitude, longitude];
 
   const map = L.map("mapID", {
-    center: [latitude, longitude],
+    center: locationArr,
     zoom: 13,
     zoomControl: false,
   });
@@ -59,6 +62,20 @@ const repositionMap = function (IPAddressData) {
       accessToken: mapBoxToken,
     }
   ).addTo(map);
+
+  L.marker(locationArr).addTo(map);
+
+  globalMap = map;
+};
+
+const repositionMap = function (IPAddressData) {
+  const latitude = IPAddressData.location.lat;
+  const longitude = IPAddressData.location.lng;
+  const locationArr = [latitude, longitude];
+
+  globalMap.panTo(locationArr, { animate: true, duration: 0.25 });
+
+  L.marker(locationArr).addTo(globalMap);
 };
 
 const formatDataForUI = function (IPAddressData) {
@@ -84,7 +101,35 @@ const updateIPInfoUI = function (formattedIPAddressData) {
   );
 };
 
-const handleSearch = function () {};
+const validateSearchInput = function (searchValue) {
+  // https://www.w3resource.com/javascript/form/ip-address-validation.php
+  if (
+    /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+      searchValue
+    )
+  ) {
+    // if valid IP address
+    return true;
+  }
+  return false;
+};
+
+const handleSearch = function (searchValue) {
+  const isValidIP = validateSearchInput(searchValue);
+  const queryParams = {};
+
+  if (isValidIP) {
+    queryParams.ipAddress = searchValue;
+  } else {
+    queryParams.domainName = searchValue;
+  }
+
+  getIPifyData(queryParams).then((IPAddressData) => {
+    repositionMap(IPAddressData);
+    const formattedIPAddressData = formatDataForUI(IPAddressData);
+    updateIPInfoUI(formattedIPAddressData);
+  });
+};
 
 const initialize = function () {
   getUserIPAddress()
@@ -92,10 +137,18 @@ const initialize = function () {
       return getIPifyData({ ipAddress: userIPAddress });
     })
     .then((IPAddressData) => {
-      repositionMap(IPAddressData);
+      intializeMap(IPAddressData);
       const formattedIPAddressData = formatDataForUI(IPAddressData);
       updateIPInfoUI(formattedIPAddressData);
     });
 };
 
 initialize();
+
+// Add event listener to form Input
+document.querySelector(".form").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const inputValue = event.target[0].value;
+  handleSearch(inputValue);
+});

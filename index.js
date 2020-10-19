@@ -1,6 +1,7 @@
 const mapBoxToken =
   "pk.eyJ1IjoidG9tdG9tYXRvIiwiYSI6ImNrZ2U4MHBqMTA4emoycXBpbnRkbjQ2cTQifQ.2_ccRECbLRUhha7njCoHsA";
 const IPifyToken = "at_e91MN1DFZkTfwQ2wPJv8EggmtHNYQ";
+const ERROR_ELEMENT = document.querySelector(".error");
 
 let globalMap;
 
@@ -112,6 +113,19 @@ const validateSearchInput = function (searchValue) {
   return false;
 };
 
+const searchErrorHandler = function () {
+  const elementClassName = ERROR_ELEMENT.className;
+
+  elementClassName === "error"
+    ? ERROR_ELEMENT.classList.add("error-animate")
+    : ERROR_ELEMENT.classList.remove("error-animate");
+
+  setTimeout(() => {
+    if (ERROR_ELEMENT.className !== "error")
+      ERROR_ELEMENT.classList.remove("error-animate");
+  }, 1500);
+};
+
 const handleSearch = function (searchValue) {
   const isValidIP = validateSearchInput(searchValue);
   const queryParams = {};
@@ -129,7 +143,7 @@ const handleSearch = function (searchValue) {
       updateIPInfoUI(formattedIPAddressData);
     })
     .catch((error) => {
-      console.warn("Something went wrong with IPIFY req", error);
+      searchErrorHandler();
     });
 };
 

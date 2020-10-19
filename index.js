@@ -76,7 +76,13 @@ const formatDataForUI = function (IPAddressData) {
   return IPAddressDataArr;
 };
 
-const updateIPInfoUI = function () {};
+const updateIPInfoUI = function (formattedIPAddressData) {
+  const ipInfoCells = document.querySelectorAll(".ip-info-cell");
+
+  formattedIPAddressData.forEach(
+    (data, index) => (ipInfoCells[index].childNodes[3].innerHTML = data)
+  );
+};
 
 const handleSearch = function () {};
 
@@ -87,13 +93,9 @@ const initialize = function () {
     })
     .then((IPAddressData) => {
       repositionMap(IPAddressData);
-      formatDataForUI(IPAddressData);
+      const formattedIPAddressData = formatDataForUI(IPAddressData);
+      updateIPInfoUI(formattedIPAddressData);
     });
 };
 
 initialize();
-
-const ipInfoCells = document.querySelectorAll(".ip-info-cell");
-console.log(ipInfoCells);
-
-ipInfoCells[0].childNodes[3].innerHTML = "test";

@@ -43,7 +43,7 @@ const intializeMap = function (IPAddressData) {
 
   const map = L.map("mapID", {
     center: locationArr,
-    zoom: 13,
+    zoom: 15,
     zoomControl: false,
   });
 

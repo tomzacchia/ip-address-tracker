@@ -33,9 +33,6 @@ const getIPifyData = function (queryParams) {
     .then((data) => {
       const IPAddressData = data;
       return IPAddressData;
-    })
-    .catch((error) => {
-      console.warn("Something went wrong with IPIFY req", error);
     });
 };
 
@@ -124,23 +121,27 @@ const handleSearch = function (searchValue) {
     queryParams.domainName = searchValue;
   }
 
-  getIPifyData(queryParams).then((IPAddressData) => {
-    repositionMap(IPAddressData);
-    const formattedIPAddressData = formatDataForUI(IPAddressData);
-    updateIPInfoUI(formattedIPAddressData);
-  });
+  getIPifyData(queryParams)
+    .then((IPAddressData) => {
+      repositionMap(IPAddressData);
+      const formattedIPAddressData = formatDataForUI(IPAddressData);
+      updateIPInfoUI(formattedIPAddressData);
+    })
+    .catch((error) => {
+      console.warn("Something went wrong with IPIFY req", error);
+    });
 };
 
 const initialize = function () {
-  getUserIPAddress()
-    .then((userIPAddress) => {
-      return getIPifyData({ ipAddress: userIPAddress });
-    })
-    .then((IPAddressData) => {
-      intializeMap(IPAddressData);
-      const formattedIPAddressData = formatDataForUI(IPAddressData);
-      updateIPInfoUI(formattedIPAddressData);
-    });
+  // getUserIPAddress()
+  //   .then((userIPAddress) => {
+  //     return getIPifyData({ ipAddress: userIPAddress });
+  //   })
+  //   .then((IPAddressData) => {
+  //     intializeMap(IPAddressData);
+  //     const formattedIPAddressData = formatDataForUI(IPAddressData);
+  //     updateIPInfoUI(formattedIPAddressData);
+  //   });
 };
 
 initialize();

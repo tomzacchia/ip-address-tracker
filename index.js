@@ -28,6 +28,7 @@ const getIPifyData = function (queryParams) {
 
   return fetch(requestURL)
     .then((response) => {
+      if (!response.ok) throw Error("Invalid IP Address or Domain Name");
       return response.json();
     })
     .then((data) => {

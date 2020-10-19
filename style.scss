@@ -151,6 +151,27 @@ h2 {
     height: 100%;
 }
 
+// ======================================== ERROR
+.error {
+    padding: 6px 12px;
+    border-radius: 6px;
+    position: fixed;
+    right: -12rem;
+    bottom: 2rem;
+    z-index: 500;
+    color: white;
+    background-color: #4f58ba;
+    transition: right 0.5s ease-in-out;
+}
+
+.error h1 {
+    font-size: 16px;
+}
+
+.error-animate {
+    right: 2rem;
+}
+
 // ======================================== ATTRIBUTION
 .attribution {
     position: fixed;

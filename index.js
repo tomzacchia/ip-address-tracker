@@ -133,15 +133,15 @@ const handleSearch = function (searchValue) {
 };
 
 const initialize = function () {
-  // getUserIPAddress()
-  //   .then((userIPAddress) => {
-  //     return getIPifyData({ ipAddress: userIPAddress });
-  //   })
-  //   .then((IPAddressData) => {
-  //     intializeMap(IPAddressData);
-  //     const formattedIPAddressData = formatDataForUI(IPAddressData);
-  //     updateIPInfoUI(formattedIPAddressData);
-  //   });
+  getUserIPAddress()
+    .then((userIPAddress) => {
+      return getIPifyData({ ipAddress: userIPAddress });
+    })
+    .then((IPAddressData) => {
+      intializeMap(IPAddressData);
+      const formattedIPAddressData = formatDataForUI(IPAddressData);
+      updateIPInfoUI(formattedIPAddressData);
+    });
 };
 
 initialize();

@@ -113,7 +113,7 @@ const validateSearchInput = function (searchValue) {
   return false;
 };
 
-const searchErrorHandler = function () {
+const displaySearchErrorMessage = function () {
   const elementClassName = ERROR_ELEMENT.className;
 
   elementClassName === "error"
@@ -144,7 +144,7 @@ const handleSearch = async function (searchValue) {
     repositionMap(IPAddressData);
     updateIPInfoUI(formattedIPAddressData);
   } catch (error) {
-    searchErrorHandler();
+    displaySearchErrorMessage();
   }
 };
 

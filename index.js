@@ -14,10 +14,10 @@ const getUserIPAddress = function () {
       const userIPAddress = data["ip"];
       // {"ip":"70.80.159.92"}
       return userIPAddress;
-    })
-    .catch((error) => {
-      console.warn("Something went wrong with IPIFY req", error);
     });
+  // .catch((error) => {
+  //   console.warn("Something went wrong with IPIFY req", error);
+  // });
 };
 
 const getIPifyData = function (queryParams) {
@@ -126,7 +126,7 @@ const searchErrorHandler = function () {
   }, 1500);
 };
 
-const handleSearch = function (searchValue) {
+const handleSearch = async function (searchValue) {
   const isValidIP = validateSearchInput(searchValue);
   const queryParams = {};
 
@@ -136,27 +136,27 @@ const handleSearch = function (searchValue) {
     queryParams.domainName = searchValue;
   }
 
-  getIPifyData(queryParams)
-    .then((IPAddressData) => {
-      repositionMap(IPAddressData);
-      const formattedIPAddressData = formatDataForUI(IPAddressData);
-      updateIPInfoUI(formattedIPAddressData);
-    })
-    .catch((error) => {
-      searchErrorHandler();
-    });
+  try {
+    const IPAddressData = await getIPifyData(queryParams);
+
+    const formattedIPAddressData = formatDataForUI(IPAddressData);
+
+    repositionMap(IPAddressData);
+    updateIPInfoUI(formattedIPAddressData);
+  } catch (error) {
+    searchErrorHandler();
+  }
 };
 
-const initialize = function () {
-  getUserIPAddress()
-    .then((userIPAddress) => {
-      return getIPifyData({ ipAddress: userIPAddress });
-    })
-    .then((IPAddressData) => {
-      intializeMap(IPAddressData);
-      const formattedIPAddressData = formatDataForUI(IPAddressData);
-      updateIPInfoUI(formattedIPAddressData);
-    });
+const initialize = async function () {
+  const userIpAddress = await getUserIPAddress();
+
+  const IPAddressData = await getIPifyData({ ipAddress: userIpAddress });
+
+  const formattedIPAddressData = formatDataForUI(IPAddressData);
+
+  intializeMap(IPAddressData);
+  updateIPInfoUI(formattedIPAddressData);
 };
 
 initialize();

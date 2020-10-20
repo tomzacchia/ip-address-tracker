@@ -1,6 +1,6 @@
 # Frontend Mentor - IP Address Tracker
 
-[Demo](ip-address-tracker-75ji44ym1.vercel.app)
+[Demo](https://ip-address-tracker-d7qxmhm9y.vercel.app/)
 
 ![Design preview for the IP Address Tracker coding challenge](./design/desktop-preview.jpg)
 

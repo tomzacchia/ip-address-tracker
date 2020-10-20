@@ -15,9 +15,6 @@ const getUserIPAddress = function () {
       // {"ip":"70.80.159.92"}
       return userIPAddress;
     });
-  // .catch((error) => {
-  //   console.warn("Something went wrong with IPIFY req", error);
-  // });
 };
 
 const getIPifyData = function (queryParams) {
@@ -38,10 +35,16 @@ const getIPifyData = function (queryParams) {
     });
 };
 
-const intializeMap = function (IPAddressData) {
+const formatIPAddressData = function (IPAddressData) {
   const latitude = IPAddressData.location.lat;
   const longitude = IPAddressData.location.lng;
   const locationArr = [latitude, longitude];
+
+  return locationArr;
+};
+
+const intializeMap = function (IPAddressData) {
+  const locationArr = formatIPAddressData(IPAddressData);
 
   const map = L.map("mapID", {
     center: locationArr,
@@ -68,9 +71,7 @@ const intializeMap = function (IPAddressData) {
 };
 
 const repositionMap = function (IPAddressData) {
-  const latitude = IPAddressData.location.lat;
-  const longitude = IPAddressData.location.lng;
-  const locationArr = [latitude, longitude];
+  const locationArr = formatIPAddressData(IPAddressData);
 
   globalMap.panTo(locationArr, { animate: true, duration: 0.25 });
 
@@ -79,7 +80,11 @@ const repositionMap = function (IPAddressData) {
 
 const formatDataForUI = function (IPAddressData) {
   const ip = IPAddressData.ip;
-  const location = `${IPAddressData.location.city}, ${IPAddressData.location.country} ${IPAddressData.location.postalCode}`;
+  const location = `
+    ${IPAddressData.location.city}, 
+    ${IPAddressData.location.country} 
+    ${IPAddressData.location.postalCode}
+  `;
   const timezone = `UTC ${IPAddressData.location.timezone}`;
   const isp = IPAddressData.isp;
 
@@ -93,10 +98,10 @@ const formatDataForUI = function (IPAddressData) {
 };
 
 const updateIPInfoUI = function (formattedIPAddressData) {
-  const ipInfoCells = document.querySelectorAll(".ip-info-cell");
+  const ipInfoElements = document.querySelectorAll(".ip-info-cell");
 
   formattedIPAddressData.forEach(
-    (data, index) => (ipInfoCells[index].childNodes[3].innerHTML = data)
+    (data, index) => (ipInfoElements[index].childNodes[3].innerHTML = data)
   );
 };
 

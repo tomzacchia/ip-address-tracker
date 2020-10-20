@@ -127,9 +127,8 @@ h2 {
 
 @media (min-width: 768px) {
   .user-info-container {
-    padding: 12px;
     top: 18vh;
-    text-align: left;
+    padding: 12px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -137,6 +136,7 @@ h2 {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    text-align: left;
   }
   .ip-info-cell {
     padding: 0 12px;
@@ -150,8 +150,8 @@ h2 {
 }
 
 .map-container {
-  background-color: blue;
   height: 70vh;
+  background-color: blue;
 }
 
 @media (min-width: 768px) {
@@ -165,12 +165,12 @@ h2 {
 }
 
 .error {
-  padding: 6px 12px;
-  border-radius: 6px;
   position: fixed;
   right: -12rem;
   bottom: 3rem;
   z-index: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
   color: white;
   background-color: #4f58ba;
   -webkit-transition: right 0.5s ease-in-out;

@@ -123,16 +123,19 @@ h2 {
 .user-info-container p {
   margin: 0;
   margin-bottom: 4px;
+
   color: gray;
 }
 
 @include screen-md-min() {
   .user-info-container {
-    padding: 12px;
     top: 18vh;
-    text-align: left;
+
+    padding: 12px;
     flex-direction: row;
     justify-content: space-between;
+
+    text-align: left;
   }
 
   .ip-info-cell {
@@ -147,8 +150,8 @@ h2 {
 
 // ======================================== MAP
 .map-container {
-  background-color: blue;
   height: 70vh;
+  background-color: blue;
 }
 
 @include screen-md-min() {
@@ -163,14 +166,17 @@ h2 {
 
 // ======================================== ERROR
 .error {
-  padding: 6px 12px;
-  border-radius: 6px;
   position: fixed;
   right: -12rem;
   bottom: 3rem;
   z-index: 500;
+
+  padding: 6px 12px;
+  border-radius: 6px;
+
   color: white;
   background-color: #4f58ba;
+
   transition: right 0.5s ease-in-out;
 }
 

@@ -151,7 +151,7 @@ h2 {
 
 .map-container {
   height: 70vh;
-  background-color: blue;
+  background-color: gainsboro;
 }
 
 @media (min-width: 768px) {

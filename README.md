@@ -1,6 +1,6 @@
 # Frontend Mentor - IP Address Tracker
 
-[Demo](https://ip-address-tracker-d7qxmhm9y.vercel.app/)
+[Demo](https://ip-address-tracker.tomzacchia.vercel.app/)
 
 <img src="./design/desktop-preview.jpg" alt="Map" width="50%" height="50%" />
 

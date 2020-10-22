@@ -2,7 +2,7 @@
 
 [Demo](https://ip-address-tracker-d7qxmhm9y.vercel.app/)
 
-![Design preview for the IP Address Tracker coding challenge](./design/desktop-preview.jpg)
+![Design preview for the IP Address Tracker coding challenge][50%](./design/desktop-preview.jpg=)
 
 ## The challenge
 

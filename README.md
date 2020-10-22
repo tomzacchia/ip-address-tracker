@@ -25,8 +25,8 @@ Your users should be able to:
 * [LealetJS](https://leafletjs.com/)
 
 ## Lessons Learned
-* [CSS Properties Order]()
-* [Promises or Async/Await]()
+* [CSS Properties Order](https://github.com/tomzacchia/ip-address-tracker/wiki/CSS-Properties-Order)
+* [Promises or Async/Await](https://github.com/tomzacchia/ip-address-tracker/wiki/Promises-or-Async-Await)
 
 ## Acknowledgements
 * [Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)
